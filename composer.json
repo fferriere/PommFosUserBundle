@@ -1,0 +1,15 @@
+{
+    "name": "pomm/fos-user-bundle",
+    "type": "library",
+    "description": "FosUserBundle manager for Pomm",
+    "keywords": ["pomm", "fos user bundle"],
+    "license": "MIT",
+    "authors": [ { "name": "Florian FERRIERE", "email": "ferriere.florian@gmail.com" }],
+    "require": {
+        "symfony/symfony": "~2.5",
+        "pomm/pomm": "~1.2",
+        "pomm/pomm-bundle": "1.2.*@dev",
+        "friendsofsymfony/user-bundle": "~1.3"
+    },
+    "autoload": { "psr-4": { "Pomm\\FosUserBundle": "./src" } }
+}
