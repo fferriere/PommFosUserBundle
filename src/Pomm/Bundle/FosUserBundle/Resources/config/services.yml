@@ -1,0 +1,10 @@
+services:
+#    pomm_fos_user.example:
+#        class: Pomm\Bundle\FosUserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    pomm_fos_user_bundle.user_map:
+        class: Pomm\Bundle\FosUserBundle\Entity\UserMap
+        arguments: ["@=service('pomm').getDatabase().getConnection()"]
+    pomm_fos_user_bundle.user_manager:
+        class: Pomm\Bundle\FosUserBundle\Model\UserManager
+        arguments: [ @security.encoder_factory, @fos_user.util.username_canonicalizer, @fos_user.util.email_canonicalizer, @pomm_fos_user_bundle.user_map ]
