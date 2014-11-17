@@ -54,42 +54,39 @@ abstract class User extends BaseObject implements UserInterface {
     }
     
     public function getCredentialsExpireAt() {
-        return $this->get('credentials_expire_at');
+        return $this->getWithoutThrow('credentials_expire_at');
     }
 
     public function getConfirmationToken() {
-        return $this->get('confirmation_token');
+        return $this->getWithoutThrow('confirmation_token');
     }
 
     public function getEmail() {
-        return $this->get('email');
+        return $this->getWithoutThrow('email');
     }
 
     public function getEmailCanonical() {
-        return $this->get('email_canonical');
+        return $this->getWithoutThrow('email_canonical');
     }
     
     public function getExpiresAt() {
-        return $this->get('expires_at');
+        return $this->getWithoutThrow('expires_at');
     }
     
     public function getId() {
-        if(!$this->has('id')) {
-            return null;
-        }
-        return $this->get('id');
+        return $this->getWithoutThrow('id');
     }
     
     public function getLastLogin() {
-        return $this->get('last_login');
+        return $this->getWithoutThrow('last_login');
     }
 
     public function getPassword() {
-        return $this->get('password');
+        return $this->getWithoutThrow('password');
     }
     
     public function getPasswordRequestedAt() {
-        return $this->get('password_requested_at');
+        return $this->getWithoutThrow('password_requested_at');
     }
 
     public function getPlainPassword() {
@@ -108,15 +105,15 @@ abstract class User extends BaseObject implements UserInterface {
     }
 
     public function getSalt() {
-        return $this->get('salt');
+        return $this->getWithoutThrow('salt');
     }
 
     public function getUsername() {
-        return $this->get('username');
+        return $this->getWithoutThrow('username');
     }
 
     public function getUsernameCanonical() {
-        return $this->get('username_canonical');
+        return $this->getWithoutThrow('username_canonical');
     }
 
     public function hasRole($role) {
@@ -141,7 +138,7 @@ abstract class User extends BaseObject implements UserInterface {
     }
 
     public function isCredentialsExpired() {
-        return $this->get('credentials_expired');
+        return $this->getWithoutThrow('credentials_expired', false);
     }
 
     public function isCredentialsNonExpired() {
@@ -158,15 +155,15 @@ abstract class User extends BaseObject implements UserInterface {
     }
 
     public function isEnabled() {
-        return $this->get('enabled');
+        return $this->getWithoutThrow('enabled', false);
     }
     
     public function isExpired() {
-        return $this->get('expired');
+        return $this->getWithoutThrow('expired', false);
     }
     
     public function isLocked() {
-        return $this->get('locked');
+        return $this->getWithoutThrow('locked', false);
     }
 
     public function isPasswordRequestNonExpired($ttl) {
@@ -345,6 +342,13 @@ abstract class User extends BaseObject implements UserInterface {
     
     public function __toString() {
         return (string) $this->getUsername();
+    }
+    
+    protected function getWithoutThrow($var, $defaultValue = null) {
+        if($this->has($var)) {
+            return $this->get($var);
+        }
+        return $defaultValue;
     }
 
 }
