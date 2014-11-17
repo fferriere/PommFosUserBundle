@@ -1,9 +1,9 @@
+parameters:
+    pomm_fos_user.user_map_class: Pomm\Bundle\FosUserBundle\Entity\UserMap
+
 services:
-#    pomm_fos_user.example:
-#        class: Pomm\Bundle\FosUserBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
     pomm_fos_user_bundle.user_map:
-        class: Pomm\Bundle\FosUserBundle\Entity\UserMap
+        class: %pomm_fos_user.user_map_class%
         arguments: ["@=service('pomm').getDatabase().getConnection()"]
     pomm_fos_user_bundle.user_manager:
         class: Pomm\Bundle\FosUserBundle\Model\UserManager
