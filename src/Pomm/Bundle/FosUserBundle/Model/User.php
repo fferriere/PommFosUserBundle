@@ -13,26 +13,13 @@ use Pomm\Object\BaseObject;
 abstract class User extends BaseObject implements UserInterface {
 
     protected $roles;
-    
+
     protected $plainPassword;
 
     public function __construct(array $values = null)
     {
-        $this->setUsername('');
-        $this->setUsernameCanonical('');
-        $this->setEmail('');
-        $this->setEmailCanonical('');
-        $this->setEnabled(false);
         $this->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-        $this->setPassword('');
-        $this->setLastLogin(null);
-        $this->setLocked(false);
-        $this->setExpired(false);
-        $this->setExpiresAt(null);
-        $this->setConfirmationToken(null);
-        $this->setPasswordRequestedAt(null);
-        $this->setCredentialsExpired(false);
-        $this->setCredentialsExpireAt(null);
+        $this->roles = array();
         parent::__construct($values);
     }
 
@@ -52,7 +39,7 @@ abstract class User extends BaseObject implements UserInterface {
     public function eraseCredentials() {
         $this->plainPassword = null;
     }
-    
+
     public function getCredentialsExpireAt() {
         return $this->getWithoutThrow('credentials_expire_at');
     }
@@ -68,15 +55,15 @@ abstract class User extends BaseObject implements UserInterface {
     public function getEmailCanonical() {
         return $this->getWithoutThrow('email_canonical');
     }
-    
+
     public function getExpiresAt() {
         return $this->getWithoutThrow('expires_at');
     }
-    
+
     public function getId() {
         return $this->getWithoutThrow('id');
     }
-    
+
     public function getLastLogin() {
         return $this->getWithoutThrow('last_login');
     }
@@ -84,7 +71,7 @@ abstract class User extends BaseObject implements UserInterface {
     public function getPassword() {
         return $this->getWithoutThrow('password');
     }
-    
+
     public function getPasswordRequestedAt() {
         return $this->getWithoutThrow('password_requested_at');
     }
@@ -94,13 +81,13 @@ abstract class User extends BaseObject implements UserInterface {
     }
 
     public function getRoles() {
-        if(!$this->roles && !is_array($this->roles) && $this->has('roles')) {
+        if((!$this->roles || !is_array($this->roles) || empty($this->roles)) && $this->has('roles')) {
             $this->roles = unserialize($this->get('roles'));
         }
-        
+
         $this->roles[] = static::ROLE_DEFAULT;
         $this->roles = array_unique($this->roles);
-        
+
         return $this->roles;
     }
 
@@ -157,11 +144,11 @@ abstract class User extends BaseObject implements UserInterface {
     public function isEnabled() {
         return $this->getWithoutThrow('enabled', false);
     }
-    
+
     public function isExpired() {
         return $this->getWithoutThrow('expired', false);
     }
-    
+
     public function isLocked() {
         return $this->getWithoutThrow('locked', false);
     }
@@ -206,12 +193,12 @@ abstract class User extends BaseObject implements UserInterface {
         $this->set('confimation_token', $confirmationToken);
         return $this;
     }
-    
+
     public function setCredentialsExpired($credentialsExpired) {
         $this->set('credentials_expired', $credentialsExpired);
         return $this;
     }
-    
+
     public function setCredentialsExpireAt($credentialsExpireAt) {
         $this->set('credentials_expire_at', $credentialsExpireAt);
         return $this;
@@ -231,12 +218,12 @@ abstract class User extends BaseObject implements UserInterface {
         $this->set('enabled', $boolean);
         return $this;
     }
-    
+
     public function setExpired($expired) {
         $this->set('expired', $expired);
         return $this;
     }
-    
+
     public function setExpiresAt($expiresAt) {
         $this->set('expires_at', $expiresAt);
         return $this;
@@ -281,7 +268,7 @@ abstract class User extends BaseObject implements UserInterface {
 
         return $this;
     }
-    
+
     public function setSalt($salt) {
         $this->set('salt', $salt);
         return $this;
@@ -324,7 +311,7 @@ abstract class User extends BaseObject implements UserInterface {
             $enabled,
             $id
         ) = $data;
-        
+
         $this->setPassword($password)
             ->setSalt($salt)
             ->setUsernameCanonical($usernameCanonical)
@@ -335,15 +322,15 @@ abstract class User extends BaseObject implements UserInterface {
             ->setEnabled($enabled)
             ->setId($id);
     }
-    
+
     public function updateRoles() {
         $this->set('roles', serialize($this->getRoles()));
     }
-    
+
     public function __toString() {
         return (string) $this->getUsername();
     }
-    
+
     protected function getWithoutThrow($var, $defaultValue = null) {
         if($this->has($var)) {
             return $this->get($var);
