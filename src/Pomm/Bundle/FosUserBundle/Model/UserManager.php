@@ -68,7 +68,7 @@ class UserManager extends BaseUserManager {
         $user->updateRoles();
         $this->updateCanonicalFields($user);
         $this->updatePassword($user);
-        $this->map->saveOne($user);
+        return $this->map->saveOne($user);
     }
 
     protected function checkUser($user) {
