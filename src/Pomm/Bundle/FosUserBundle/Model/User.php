@@ -3,14 +3,15 @@
 namespace Pomm\Bundle\FosUserBundle\Model;
 
 use FOS\UserBundle\Model\UserInterface;
-use Pomm\Object\BaseObject;
+use Pomm\Bundle\FosUserBundle\Model\AbstractBaseObject;
 
 /**
  * Description of User
  *
  * @author florian
  */
-abstract class User extends BaseObject implements UserInterface {
+abstract class User extends AbstractBaseObject implements UserInterface, GroupableInterface
+{
 
     protected $roles;
 
@@ -329,13 +330,6 @@ abstract class User extends BaseObject implements UserInterface {
 
     public function __toString() {
         return (string) $this->getUsername();
-    }
-
-    protected function getWithoutThrow($var, $defaultValue = null) {
-        if($this->has($var)) {
-            return $this->get($var);
-        }
-        return $defaultValue;
     }
 
 }
