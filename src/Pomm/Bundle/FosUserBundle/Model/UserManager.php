@@ -99,4 +99,8 @@ class UserManager extends BaseUserManager {
         return $where;
     }
 
+    public function getMap() {
+        return $this->map;
+    }
+
 }
