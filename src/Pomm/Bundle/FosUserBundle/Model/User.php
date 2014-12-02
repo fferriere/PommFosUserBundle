@@ -19,7 +19,6 @@ abstract class User extends BaseObject implements UserInterface {
     public function __construct(array $values = null)
     {
         $this->setSalt(base_convert(sha1(uniqid(mt_rand(), true)), 16, 36));
-        $this->roles = array();
         parent::__construct($values);
     }
 
@@ -81,7 +80,7 @@ abstract class User extends BaseObject implements UserInterface {
     }
 
     public function getRoles() {
-        if((!$this->roles || !is_array($this->roles) || empty($this->roles)) && $this->has('roles')) {
+        if((!is_array($this->roles)) && $this->has('roles')) {
             $this->roles = unserialize($this->get('roles'));
         }
 
