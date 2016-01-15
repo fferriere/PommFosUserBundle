@@ -5,7 +5,7 @@
     "keywords": ["pomm", "fos user bundle"],
     "license": "MIT",
     "authors": [ { "name": "Florian FERRIERE", "email": "ferriere.florian@gmail.com" }],
-    "version": "2.dev",
+    "version": "2.0.0",
     "require": {
         "pomm-project/pomm-bundle": "~2.0",
         "friendsofsymfony/user-bundle": "~1.3"
