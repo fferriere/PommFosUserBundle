@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Fferriere\\PommProjectFosUserBundle": "./src/lib"
+            "Fferriere\\PommProjectFosUserBundle\\": "./src/lib"
         }
     }
 }
