@@ -4,6 +4,13 @@ FosUserBundle driver for PommProject 2
 
 This bundle permit to use FosUserBundle with Pomm easily.
 
+## Installation
+
+With composer :
+```
+composer require fferriere/pomm-project-fos-user-bundle ~2.0
+```
+
 ## Configuration
 
 In `app/config/config.yml` add configuration below :
