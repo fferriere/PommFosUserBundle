@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\Model;
+namespace Fferriere\PommProjectFosUserBundle\Model;
 
 use PommProject\ModelManager\Model\Model;
 use PommProject\ModelManager\Model\ModelTrait\WriteQueries;

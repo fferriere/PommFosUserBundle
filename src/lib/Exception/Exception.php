@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\Exception;
+namespace Fferriere\PommProjectFosUserBundle\Exception;
 
 /**
  * Description of Exception

@@ -1,5 +1,5 @@
 {
-    "name": "pomm-project/fos-user-bundle",
+    "name": "fferriere/pomm-project-fos-user-bundle",
     "type": "library",
     "description": "FosUserBundle manager for Pomm",
     "keywords": ["pomm", "fos user bundle"],
@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PommProject\\PommFosUserBundle": "./src/lib"
+            "Fferriere\\PommProjectFosUserBundle": "./src/lib"
         }
     }
 }

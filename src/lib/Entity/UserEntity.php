@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\Entity;
+namespace Fferriere\PommProjectFosUserBundle\Entity;
 
 /**
  * Description of UserEntity

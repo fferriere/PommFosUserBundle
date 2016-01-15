@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\Entity;
+namespace Fferriere\PommProjectFosUserBundle\Entity;
 
 use PommProject\ModelManager\Model\FlexibleEntity;
 use FOS\UserBundle\Model\UserInterface;

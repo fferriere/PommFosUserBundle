@@ -1,6 +1,6 @@
 parameters:
     pomm_fos_user.table_name: fos_user
-    pomm_fos_user.user_model_class: PommProject\PommFosUserBundle\Model\UserModel
+    pomm_fos_user.user_model_class: Fferriere\PommProjectFosUserBundle\Model\UserModel
 
 services:
     pomm_fos_user_bundle.user_model:
@@ -9,5 +9,5 @@ services:
         calls:
             - [ initialize, [ "@=service('pomm').getDefaultSession()" ] ]
     pomm_fos_user_bundle.user_manager:
-        class: PommProject\PommFosUserBundle\Manager\UserManager
+        class: Fferriere\PommProjectFosUserBundle\Manager\UserManager
         arguments: [ @security.encoder_factory, @fos_user.util.username_canonicalizer, @fos_user.util.email_canonicalizer, @pomm_fos_user_bundle.user_model ]

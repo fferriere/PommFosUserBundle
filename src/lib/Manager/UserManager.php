@@ -1,14 +1,14 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\Manager;
+namespace Fferriere\PommProjectFosUserBundle\Manager;
 
 use FOS\UserBundle\Model\UserManager as BaseUserManager;
 use FOS\UserBundle\Model\UserInterface;
-use PommProject\PommFosUserBundle\Model\WriteModel;
-use PommProject\PommFosUserBundle\Exception\Exception;
+use Fferriere\PommProjectFosUserBundle\Model\WriteModel;
+use Fferriere\PommProjectFosUserBundle\Exception\Exception;
 use FOS\UserBundle\Util\CanonicalizerInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use PommProject\PommFosUserBundle\Entity\UserEntity;
+use Fferriere\PommProjectFosUserBundle\Entity\UserEntity;
 use PommProject\Foundation\Inflector;
 use PommProject\Foundation\Where;
 
@@ -53,7 +53,7 @@ class UserManager extends BaseUserManager
     protected function checkUser(UserInterface $user)
     {
         if (! $user instanceof UserEntity) {
-            throw new Exception('user instance is not an instance of \PommProject\PommFosUserBundle\Entity\UserEntity');
+            throw new Exception('user instance is not an instance of \Fferriere\PommProjectFosUserBundle\Entity\UserEntity');
         }
         return $this->model;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\Model;
+namespace Fferriere\PommProjectFosUserBundle\Model;
 
 use PommProject\ModelManager\Model\RowStructure;
 
@@ -42,7 +42,7 @@ class UserModel extends WriteModel
                 ->addField('credentials_expired', 'bool')
                 ->addField('credentials_expire_at', 'timestamp')
                 ->setPrimaryKey([ 'id' ]);
-        $this->flexible_entity_class = 'PommProject\PommFosUserBundle\Entity\UserEntity';
+        $this->flexible_entity_class = 'Fferriere\PommProjectFosUserBundle\Entity\UserEntity';
     }
 
 }

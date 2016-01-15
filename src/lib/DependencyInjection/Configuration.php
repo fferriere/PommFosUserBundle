@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle\DependencyInjection;
+namespace Fferriere\PommProjectFosUserBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace PommProject\PommFosUserBundle;
+namespace Fferriere\PommProjectFosUserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
