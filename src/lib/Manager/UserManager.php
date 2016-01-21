@@ -126,25 +126,28 @@ class UserManager extends BaseUserManager implements AdvancedUserManagerInterfac
     /**
      * @inheritDoc
      */
-    public function existsUsernameForOtherUser($userId, $username)
+    public function existsUsernameForOtherUser($username, $userId = null)
     {
         $username = $this->canonicalizeUsername($username);
-        return $this->model->existWhere(
-                (new Where('username_canonical = $*', [ $username ]))
-                    ->andWhere('id != $*', [ $userId ])
-        );
+        $where = new Where('username_canonical = $*', [ $username ]);
+        if ($userId) {
+            $where->andWhere('id != $*', [ $userId ]);
+        }
+        return $this->model->existWhere($where);
     }
+
 
     /**
      * @inheritDoc
      */
-    public function existsEmailForOtherUser($userId, $email)
+    public function existsEmailForOtherUser($email, $userId = null)
     {
         $email = $this->canonicalizeEmail($email);
-        return $this->model->existWhere(
-                (new Where('email_canonical = $*', [ $email ]))
-                    ->andWhere('id != $*', [ $userId ])
-        );
+        $where = new Where('email_canonical = $*', [ $email ]);
+        if ($userId) {
+            $where->andWhere('id != $*', [ $userId ]);
+        }
+        return $this->model->existWhere($where);
     }
 
 }
