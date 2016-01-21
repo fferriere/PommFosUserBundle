@@ -17,7 +17,7 @@ use PommProject\Foundation\Where;
  *
  * @author florian
  */
-class UserManager extends BaseUserManager
+class UserManager extends BaseUserManager implements AdvancedUserManagerInterface
 {
 
     /**
@@ -121,6 +121,30 @@ class UserManager extends BaseUserManager
             $where->andWhere($subWhere);
         }
         return $where;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function existsUsernameForOtherUser($userId, $username)
+    {
+        $username = $this->canonicalizeUsername($username);
+        return $this->model->existWhere(
+                (new Where('username_canonical = $*', [ $username ]))
+                    ->andWhere('id != $*', [ $userId ])
+        );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function existsEmailForOtherUser($userId, $email)
+    {
+        $email = $this->canonicalizeEmail($email);
+        return $this->model->existWhere(
+                (new Where('email_canonical = $*', [ $email ]))
+                    ->andWhere('id != $*', [ $userId ])
+        );
     }
 
 }
